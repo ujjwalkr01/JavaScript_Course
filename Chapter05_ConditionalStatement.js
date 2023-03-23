@@ -1,8 +1,8 @@
-//prompt gives the notification
+//in javaScript we use prompt to take the user input
 let a = prompt("Hey whats you age?");
 a = Number.parseInt(a); // Converting the string to a number
 if(a<0){
-  alert("This is an invalid age"); //alert gives the alert 
+  alert("This is an invalid age"); //alert gives output display in js
 }
 else if(a<9){
   alert("You are a kid and you cannot even think of driving");
