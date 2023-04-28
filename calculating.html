@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="head"></h1>
+    <input id="in" type="text"> 
+    <input id="Sin" type="text"> 
+    <button id="btn" onclick="add()">add</button>
+    <button id="btn" onclick="sub()">sub</button>
+    <button id="btn" onclick="multi()">multiply</button>
+    <button id="btn" onclick="divi()">div</button>
+    <input id="res" type="text"> 
+</body>
+</html>
+<script>
+    let a=document.getElementById("in");
+    let b=document.getElementById("Sin");
+    //console.log(a.value);
+    let res=document.getElementById("res");
+    let output=document.getElementById("head");
+    function add(){
+        //console.log(Number(a.value)+Number(b.value));
+        res.value=Number(a.value)+Number(b.value);
+        output.innerText=Number(a.value)+Number(b.value);
+    }
+    function sub(){
+        res.value=Number(a.value)-Number(b.value);
+    }
+    function multi(){
+        res.value=Number(a.value)*Number(b.value);
+    }
+    function divi(){
+        res.value=Number(a.value)/Number(b.value);
+    }
+</script>
