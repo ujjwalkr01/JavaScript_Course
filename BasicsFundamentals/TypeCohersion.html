@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>TypeConversion/Type cohersion related fundamentals</p>
+</body>
+</html>
+<script>
+//type conversion (Explicit process)
+//In this we as a programmer do the type casting as per our needs ..
+let age='20';
+console.log(age);
+console.log(Number(age));
+//---------------------------------
+
+//typeCohersion..(Implicit process)
+//In this javaScript automatically detects the data type and perform the action...
+let age1='25';
+let age2=30;
+let age3='40';
+console.log(age1+age2);
+
+//In type cohersion process '+' operators works as a concatenation process when the operands are String 
+/* where as except '+' operators all others operators performs the mathematical operations when the operands are String.
+*/
+console.log(age3-age2);
+console.log(age1*age2);
+console.log(age1/age2);
+
+//-----------------------------------------------------------------------------------------------------
+
+//Truthy and Falsy value
+//In js there are only 5 falsy values : 1) 0  2)''(an empty string)  3)undefined  4)null  5)NAN(not a number) (it is a type of number data type but it's a invalid number)
+//Except these 5 all values are true...
+
+let name='';
+if(name){
+    console.log("true");
+}else{
+    console.log('false');
+}
+//-----------------------------------------------------------------------------------------------------
+
+//Equality Operator(==) vs (===)
+//(==) Loose Equality operator---> it only compares the values and don't compares for the data type where as (!=) just do opposite of the (==) operator.
+//(===) Strict Equality operator---> it compares both the values as well as data types where as (!==) just do opposite of the (===) operator.
+
+//Note--> It's preferable to mostly use strict versions of equality operator rather than loose equality operator.
+
+let num1='18';
+let num2=18;
+
+console.log(num1==num2);
+console.log(num1===num2);
+console.log(num1!==num2);
+console.log(num1!=num2);
+
+</script>
