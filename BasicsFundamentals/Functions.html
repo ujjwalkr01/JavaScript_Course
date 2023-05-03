@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Functions related fundamentals</p>
+</body>
+</html>
+<script>
+    //function declaration
+ //In this we can access the function before intializing the function    
+    const age= calculateAge(1998);
+    function calculateAge(birthyear){
+        return 2023-birthyear;
+    }
+    
+    console.log(age);
+
+    //function expression
+//so in function expression we can't access the function before intialization 
+    const calcAge=function(birthyear){
+        return 2023-birthyear;
+    }
+    console.log(calcAge(1998));
+
+//-------------------------------------------
+
+
+//Arrow function
+ /*In arrow functions we dont need to write the function keyword. 
+ 
+ If there is one parameters and single line of the code then we simply write the paramaters and the return will happend implicitly    
+*/
+
+const calcAge1=birthyear=> 2023-birthyear;
+console.log(calcAge1(1999));
+
+/* when there are multiple parameters then we have to wrap the parameters in () and if there are multiline code inside the fucntion then we have to use return statement explicitly and we have to wrap function body with {}.
+*/
+
+const calcAge3=(birthyear,firstName)=>{
+     const age1=2023-birthyear;
+     const retirement=60-age1;
+
+     return `${firstName} will retire in ${retirement} years`;
+}
+console.log(calcAge3(1999,'Ujjwal'))
+</script>
