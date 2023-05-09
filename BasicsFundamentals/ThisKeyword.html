@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>this Keyword fundamentals</p>
+</body>
+</html>
+<script>
+    'use strict'
+    // using globally---> if we are using this keyword as globally then it will point to the window object of the browser.....
+    console.log(this);
+
+
+    /* using inside simple functionCall---> if we use this keyword inside the function using strict mode then it will give undefined else it will point to window object of the browser..
+     */
+     const calcage= function(birthyear){
+        console.log(2023-birthyear);
+        console.log(this);
+     }
+     calcage(1998);
+
+    /* using Arrow Function---> if we use this kwyword inside the arrow function then it will point to the lexical this value so it can access the global this so it will also point to window object
+    */      
+    const calcAge=birthyear=>{
+      console.log(2023-birthyear);
+      console.log(this);
+    }
+    calcAge(1999);
+
+    /* using with object Methods---> if we use this keyword with function inside the object then this keyword will point to the object name.
+    */
+   const obj={
+    year:2000,
+    name:"ujjwal",
+    calcAge:function(){
+        console.log(this);
+        console.log(2023-this.year);
+    }
+   }
+   obj.calcAge();
+
+   const obj1={
+    year:2001,
+    name:"golu",
+   }
+   //we can also borrow the function value of the object using objctname.fuctionName(copy to)=objectName.functionName(copy from)
+   obj1.calcAge=obj.calcAge;
+   obj1.calcAge();
+
+   const f=obj.calcAge;
+   console.log(f);
+   //we will get an error here because we are passing the value of the function called under the object and f is not under any object so we will get an error..
+   f();
+</script>
