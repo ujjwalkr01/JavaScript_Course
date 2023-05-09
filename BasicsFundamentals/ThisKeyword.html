@@ -1,59 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <p>this Keyword fundamentals</p>
-</body>
+  </body>
 </html>
 <script>
-    'use strict'
-    // using globally---> if we are using this keyword as globally then it will point to the window object of the browser.....
+  "use strict";
+  // using globally---> if we are using this keyword as globally then it will point to the window object of the browser.....
+  console.log(this);
+
+  /* using inside simple functionCall---> if we use this keyword inside the function using strict mode then it will give undefined else it will point to window object of the browser..
+   */
+  const calcage = function (birthyear) {
+    console.log(2023 - birthyear);
     console.log(this);
+  };
+  calcage(1998);
 
+  /* using Arrow Function---> if we use this kwyword inside the arrow function then it will point to the lexical this value so it can access the global this so it will also point to window object
+   */
+  const calcAge = (birthyear) => {
+    console.log(2023 - birthyear);
+    console.log(this);
+  };
+  calcAge(1999);
 
-    /* using inside simple functionCall---> if we use this keyword inside the function using strict mode then it will give undefined else it will point to window object of the browser..
-     */
-     const calcage= function(birthyear){
-        console.log(2023-birthyear);
-        console.log(this);
-     }
-     calcage(1998);
-
-    /* using Arrow Function---> if we use this kwyword inside the arrow function then it will point to the lexical this value so it can access the global this so it will also point to window object
-    */      
-    const calcAge=birthyear=>{
-      console.log(2023-birthyear);
+  /* using with object Methods---> if we use this keyword with function inside the object then this keyword will point to the object name.
+   */
+  const obj = {
+    year: 2000,
+    name: "ujjwal",
+    calcAge: function () {
       console.log(this);
-    }
-    calcAge(1999);
+      console.log(2023 - this.year);
+    },
+  };
+  obj.calcAge();
 
-    /* using with object Methods---> if we use this keyword with function inside the object then this keyword will point to the object name.
-    */
-   const obj={
-    year:2000,
-    name:"ujjwal",
-    calcAge:function(){
+  const obj1 = {
+    year: 2001,
+    name: "golu",
+  };
+  //we can also borrow the function value of the object using objctname.fuctionName(copy to)=objectName.functionName(copy from)
+  obj1.calcAge = obj.calcAge;
+  obj1.calcAge();
+
+  const f = obj.calcAge;
+  console.log(f);
+  //we will get an error here because we are passing the value of the function called under the object and f is not under any object so we will get an error..
+  // f();
+
+  //Use of regular or Arrow function inside the object.
+
+  const obj3 = {
+    fname: "ujjwal",
+    year: 1998,
+
+    calcAge: function () {
+      console.log(this);
+      console.log(2023 - this.year);
+
+      //in previous version of the js
+      // const self=this;
+      // const isMilenial=function(){
+      //     console.log(self);
+      //     console.log(self.year>=1981);
+      // }
+
+      //in modern version of the js
+      const isMilenial = () => {
         console.log(this);
-        console.log(2023-this.year);
-    }
-   }
-   obj.calcAge();
+        console.log(this.year >= 1981);
+      };
+      isMilenial();
+    },
 
-   const obj1={
-    year:2001,
-    name:"golu",
-   }
-   //we can also borrow the function value of the object using objctname.fuctionName(copy to)=objectName.functionName(copy from)
-   obj1.calcAge=obj.calcAge;
-   obj1.calcAge();
+    greet: () => {
+      console.log(this);
+      //here this.fname will give undefined because this keyword inside the arrow function points to the object and the variables used with it is in window object is undefined.
+      console.log(`Hey ${this.fname}`);
+    },
+  };
+  //so its better to use regular function as comparitive to arrow function
+  obj3.calcAge();
+  obj3.greet();
 
-   const f=obj.calcAge;
-   console.log(f);
-   //we will get an error here because we are passing the value of the function called under the object and f is not under any object so we will get an error..
-   f();
+// Arguments in regular function and arrow function...
+
+const foo=function(a,b){
+    console.log(arguments);
+    return a+b;
+}
+//so basically in regular function we can pass as many number of arguments and it will be in form of array and we can access using loop...
+console.log(foo(2,5));
+foo(2,5,8,10,11);
+
+// but we can't pass the extra arguments in arrow function...
+const foo1=(a,b)=>{
+//   console.log(arguments);
+  return a+b;
+}
+console.log(foo1(2,3));
+
 </script>
