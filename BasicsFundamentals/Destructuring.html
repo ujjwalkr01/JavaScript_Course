@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Destructuring the array and the objects Fundamentals</p>
+</body>
+</html>
+<script>
+    //extracting the values from the arrays/properties of the object and declaring them to the variables is destructuring
+    const obj={
+        name:"ujjwal",
+        age:25,
+        food:["Italian","pizza","vegeterian","Non-veg","SoftDrinks"],
+        number:[1,2,3,4,6,7,8],
+
+        menu: function(startInd,lastInd){
+            return [this.food[startInd], this.number[lastInd]];
+        }
+    }
+/* we can extract the values of the arrays using ->[variablename]=arrName */
+
+    const [a,b,c]=obj.number;
+    console.log(a,b,c); //1 2 3
+
+/* if we don't want to access some element then u can just leave blankspace. It will skip that data*/
+    let [x,,y,z]=obj.number;
+    console.log(x,y,z); //1 3 4
+
+/*We can swap the value of the variables using*/ 
+  [x,y,z]=[z,x,y];
+  console.log(x,y,z);
+
+  //recieving the two values from the function
+  console.log(obj.menu(1,0));
+  const [startInd,lastInd]=obj.menu(1,0);
+  console.log(startInd,lastInd);
+
+  //we can also use nested destructuring array and nested array ...
+  const arr=[1,2,[4,5]];
+  const [i, ,j]=arr;
+  console.log(i,j);
+  //if we want to access the nested array then we have to use nested destructuring assignment [[]]...
+  const [p, ,[q,r]]=arr;
+  console.log(p,q,r);
+
+  //we can also set default values in the destructuring variables...
+  const [l,m,n=1]=[8,9];
+  //here we will get undefined for n as there are only two elements in array, but if we set the values of any variable in destructuring then it will remove undefined and take that value.
+  console.log(l,m,n);
+  
+  /*-----------------------Object Destructuring---------------------------------------*/
+  //we use {} symbol for destructuring object assignments...
+  const obj1={
+    name:"harry",
+    age:30,
+    gender:'male',
+     wfh:{
+        thu:{
+            s:9,
+            e:7,
+        },
+        fri:{
+            s:7,
+            e:9,
+        },
+     },
+     friend:['harry','jack','rahul'],
+  };
+  const {name,age,gender,wfh}=obj1;
+  console.log(name,age,gender,wfh);
+
+  //when we want to give new variable name instead of property name then we have to use...
+
+  const {name:pName, age:pAge, gender:gen, wfh:workngtime}=obj1;
+  console.log(pName,pAge,gen,workngtime);
+
+  //we can also set the default value to the destructuring object as well...
+  const {job=[], friend:friendCircle=[] }=obj1;
+  console.log(job,friendCircle);
+  
+  //we can also mutate the object property value...
+  let n1=100;
+  let n2=150;
+
+  const obj2={
+    n1:20,
+    n2:30,
+  };
+
+  ({n1, n2} = obj2);
+  console.log(n1,n2);
+
+  //we can also access the nested objects ..
+  const {fri:{s:start, e:end}}=wfh;
+  console.log(start,end);
+
+
+</script>
