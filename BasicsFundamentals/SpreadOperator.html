@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Spread operator fundamentals</p>
+</body>
+</html>
+<script>
+
+    const arr=[1,2,3,4,5];
+    const badArr=[11,12,arr];
+    console.log(badArr);
+/*Spread operator allows to iterate over the elements of the arrays and create a new array.*/
+    const newArr=[11,12,...arr];
+    console.log(newArr);
+
+    const concatArr=newArr.concat(badArr);
+    console.log(concatArr);
+    
+    //we can also concat array using spread operator...
+    const mergeArr = [...newArr,...arr];
+    console.log(mergeArr);
+
+    //we can use spread operator will iterables  such as arrays, strings, maps, sets. But not object...
+
+    const str="Ujjwal";
+    const letter=[...str,' ','K'];
+    console.log(letter);
+    console.log(...str);
+
+</script>
