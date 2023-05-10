@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Primitive and object fundamentals</p>
+</body>
+</html>
+<script>
+    //primitive values example
+    let age=30;
+    let oldage=age;
+    age=31;
+    console.log(age);
+    console.log(oldage);
+ 
+    //references values example
+
+    const obj={
+        name:'ujjwal',
+        age:30,
+    };
+
+    //we can pass the object values to knew object 
+    const obj1= obj;
+    obj1.age=27;
+
+/*Both will print age value 27 because obj is pointing to the address in call stack and that addresing value is refrencing to memory address in heap area. and obj1 is also pointing to same address so the change will occur in the same address value of obj as well and that's why both will print the same age 
+*/
+    console.log('obj1:', obj1); //27
+    console.log('obj:',obj);//27
+
+
+    //copying Objects.....
+    const obj2={
+        name:'ujjwal',
+        age:24,
+       friend:["golu", "harry"],
+    }
+    //using Object.assign() we can copy the exact value of one object to another and it will not make change in original object. But when me make change inner object of the object using new object then original object will also get changed...... 
+    const obj3=Object.assign({},obj2);
+    console.log(obj3)
+    obj3.age=25;
+    obj3.friend.push("shubhm");
+    console.log("obj3",obj3);
+    console.log("obj2",obj2);
+
+    
+</script>
