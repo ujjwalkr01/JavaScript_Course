@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Map in javaScript</p>
+</body>
+</html>
+<script>
+    //creating a new maap
+    const mapName=new Map();
+
+    //we can add the key value pair using set
+    mapName.set('name',"ujjwal");
+    mapName.set('age',20);
+    mapName.set(1,'present');
+    console.log(mapName);
+
+    //we can also add the array as key in map..
+    let arr=[1,2];
+    mapName.set(arr,'Test');
+    console.log(mapName);
+
+    //we can obtain the values of the specific key using get()
+    console.log(mapName.get('name'));
+    console.log(mapName.get(arr));
+    console.log(mapName.get(0));
+
+    //we can add multiple values in the map at a time
+    mapName.set('gender','male').set('hobby','cricket');
+    console.log(mapName);
+
+    //we can get the size of the map using .size;
+    console.log(mapName.size);
+
+    //we can delete the key-value of the map using delete()..
+    console.log(mapName.delete(1));
+    console.log(mapName);
+    console.log(mapName.size);
+
+    //we can also check for whether map contains the specific key or not..
+    console.log(mapName.has('name'));
+    console.log(mapName.has(1));
+
+    //we can also convert the object to the map;
+    const obj={
+        veichle:'car',
+        type:'4wheeler',
+        color:'black',
+    };
+    const mapObj=new Map(Object.entries(obj));
+    console.log(mapObj);
+
+    //we can also set the key value pairs directally without using the set()..
+
+    const quizz=new Map([['question','What is the best programming language in the world?'],[1,'C'],[2,'Java'],[3,'JavaScript'],['correct',3], [true,'Correct answer'],[false,'wrong answer']]);
+    console.log(quizz);
+
+    console.log(quizz.get('question'));
+    //we can also iterate over the map using for of and destructuring arr...
+    for(const [key, val] of quizz){
+        if(typeof key==='number'){
+            console.log(`Answer ${key}: ${val}`);
+        }
+    }
+    // const ans=Number(prompt('your answer'));
+    const ans=3;
+    console.log(ans);
+    console.log(quizz.get(quizz.get('correct')===ans));
+
+    //we can also convert the map to array..
+    let arr1=[...quizz];
+    console.log(arr1);
+
+
+</script>
