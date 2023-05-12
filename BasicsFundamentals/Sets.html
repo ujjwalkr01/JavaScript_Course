@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Sets in javaScript</p>
+</body>
+</html>
+<script>
+    //syntax to create the set
+    const set=new Set();
+
+    //we can also pass the array as a multiple arguments and single arguments in the set constructor;
+    const set1=new Set([1,2,3,2,4,1]);
+    console.log(set1);
+
+    const set2=new Set("ujjwal");
+    console.log(set2);
+
+    //there are some methods of sets..
+    console.log(set.add(5)); //we can add values to the set..
+    console.log(set1.size);//we can get the size of the set..
+    //we can check if set contains the specific value or not.
+    console.log(set1.has(3));
+    console.log(set1.has(5));
+    //we can  delete the specific value of the set...
+    console.log(set1.delete(2));
+    console.log(set1);
+
+    //we can iterate over the set using for of ...
+    for(let val of set2){
+        console.log(val);
+    }
+    //we can also make the set as an array...
+    const value=[...new Set(set2)];
+    console.log(value);
+</script>
