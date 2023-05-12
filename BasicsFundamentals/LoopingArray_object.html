@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Looping in array and objects</p>
+</body>
+</html>
+<script>
+    const num=[1,2,3,4,5,6,7,8,9];
+    //it will iterate through the objects and print the elements of the array
+    for(let n1 of num){
+        console.log(n1);
+    }
+    //it will iterate through the index and print the index...
+    for(let n1 in num){
+        console.log(n1);
+    }
+  //it will iterate through both the index as well as elements of the array...
+    for(let n1 of num.entries()){
+        console.log(n1);
+    }
+//-----------------------------------------------
+    //looping over the objects...
+    const obj={
+        name:'ujjwal',
+        age:25,
+        city:'delhi',
+    }
+   //it will iterate over the keys  in the object..
+    for(let val in obj){
+        console.log(val);
+    }
+    //we can iterate over the values in the object using  Object.values(objectName)
+    const properties=Object.values(obj);
+    for(let val of properties){
+       console.log(val);
+    }
+    //we can print the object values in the form of the array...
+    console.log(properties);
+
+//we can iterate over the key and values using entries()...
+    const values=Object.entries(obj);
+    //here we get a key value inside the single array 
+    console.log(values);
+
+    //here we get a key value inside a diff array...
+    for(let val of values){
+        console.log(val);
+    }
+</script>
