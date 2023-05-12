@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Coding challenges under Data Structures</p>
+</body>
+</html>
+<script>
+    const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+//1.
+const [player1,player2]=game.players;
+console.log(player1,player2);
+
+//2.
+const [goalKeeper, ...fieldplayer]=player1;
+console.log(goalKeeper,fieldplayer);
+
+//3.
+const AllPlalyers=[...player1,...player2];
+console.log(AllPlalyers);
+
+//4.
+const finalPlayer=[...player1,'Ujjwal','harry','Shubham'];
+console.log(finalPlayer);
+
+//5.
+const {odds:{team1,x:draw,team2}}=game;
+console.log(team1,draw,team2);
+
+//6.
+const printGoal=function(...players){
+   console.log(`${players.length} goals were scored.`);
+}
+printGoal('Ujjwal','harry','Shubham','Aditya');
+printGoal('lucky','rahul');
+printGoal(...game.scored);
+
+//7.
+team1<team2?console.log('Team 1 is likely to win'):console.log('Team 2 is likelly to win');
+
+/*---------------------coding challenge 2---------------------------*/
+
+//1.
+for(let [index,player] of game.scored.entries()){
+    console.log(`Goal ${index+1}: ${player}`);
+}
+//2.
+const odds=Object.values(game.odds);
+let avg=0;
+  for(let val of odds){
+     avg+=val;     
+  }
+  console.log(avg/odds.length);
+
+//3.
+for(let [team, odds] of Object.entries(game.odds)){
+    const teamStr=team==='x'? 'draw':`victory ${game[team]}`;
+    console.log(`${teamStr}: ${odds}`);
+}
+</script>
