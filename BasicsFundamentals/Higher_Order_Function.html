@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="para">Higher function fundamentals</p>
+</body>
+</html>
+<script>
+    //--------Defualt parameters---------------------*/
+    //so default parameter bsically works when we don't pass any value in the arguments or we set as undefined then we can set the parameters value . and if we call the function and pass the value then it will replace the default parameterized value with the arguments that we passed.
+  const bookings=[];
+
+    const createBooking=function booking(flightNum,noOfPass=1,price=noOfPass*200){
+
+        const booking={
+            flightNum,
+            noOfPass,
+            price,
+        }
+        console.log(booking);
+        bookings.push(booking);
+        console.log(bookings);
+    };
+
+    createBooking('Lh123');
+    createBooking('BE123',undefined,undefined);
+    createBooking('Ag123',4);
+    createBooking('Ind221',1,500);
+
+    /*-----------------Higher Order function-------------*/
+    console.log('---------Higher order function--------');
+    
+    const oneWord=function(str){
+        return str.replace(/ /g , '').toLowerCase();
+    };
+
+    const upperFirstWord = function(str){
+        const [first, ...others]=str.split(' ');
+        return [first.toUpperCase(), ...others].join(' ');
+    }
+
+    //this is higher order function
+    const transform = function(str, fn){
+        console.log(`Original String: ${str}`);
+        console.log(`Transformed String: ${fn(str)}`);
+
+        console.log(`Transformed by: ${fn.name}`);
+    }
+
+    transform('JavaScript is a best language!', upperFirstWord);
+    transform('JavaScript is a best language!', oneWord);
+
+    /*----------Returning the function--------*/
+    console.log('---------return as a function-------------');
+
+    const greet= greeting=>{
+        return name=>{
+            console.log(`${greeting} ${name}`);
+        };
+    };
+
+    const greetHey=greet('Hey');
+    greetHey('Ujjwal');
+
+    greet('Hey') ('Harry');
+    /*----------Call Method in function------------*/
+/* call Method in function is use to write the methods for the different objects. It will take objectName as the argument.
+It help us to explicitly define this keyword in the functions
+*/
+      console.log('----------Call Method in JS----------');
+
+      const obj={
+        airline: 'Indigo',
+        iataCode: 'LH',
+        boking:[],
+
+        book(flightNum,name){
+            console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+
+            this.boking.push({flight: `${this.iataCode}${flightNum}`, name});
+        },
+      };
+      obj.book('001', 'Ujjwal');
+      obj.book('002', 'Harry');
+      console.log(obj);
+
+      const obj1={
+        airline:'Airasia',
+        iataCode:'AS',
+        boking:[],
+      };
+      const book=obj.book;
+
+      //book('001', 'Ujjwal');
+
+      book.call(obj1,'041','Adit');
+      book.call(obj1,'021','Mitu');
+      console.log(obj1);
+    
+    book.call(obj,'456','Shruti');
+    console.log(obj);
+
+    const obj2={
+        airline:'Vistara',
+        iataCode:'VS',
+        boking:[],
+      };
+
+      const flightDetail=['583','Golu'];
+      book.call(obj2,...flightDetail);
+      console.log(obj2);
+
+      /*-----------Bind Mehtod---------------*/
+      console.log('--------Bind()--------------');
+    //Bind() bind the this keyword to the object...
+
+     let bookE23= book.bind(obj2);
+     bookE23('023','Saurav');
+
+     bookE23=book.bind(obj2,'021','rahul');
+     bookE23();
+     console.log(obj2);
+
+     //handle eventListener 
+
+     obj1.planes=300;
+     obj1.buyPlane=function(){
+        console.log(this);
+        this.planes++;
+        console.log(this.planes);
+     }
+     //here if we dont use the bind() then this keyword will point to the document.query....() object which is undefined
+     document.querySelector('.para').addEventListener('click',obj1.buyPlane.bind(obj1));
+
+     //partial applications
+     const addTax=(rate,value)=>value+value*rate;
+     console.log(addTax(0.1,200));
+
+     const addVAT=addTax.bind(null,0.23);
+     console.log(addVAT(100));
+</script>
