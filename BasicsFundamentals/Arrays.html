@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Arrays fundamentals</p>
+  </body>
+</html>
+
+<script>
+  //simple methods of arrays
+  let arr = ["a", "b", "c", "d", "e", "f"];
+
+  //1--> Slice()
+  //slice() always returns the new array so whenever we use slice method we should use create a new variable and then use it.
+
+  console.log(arr.slice(1)); //it will take all the element from index 1..
+  console.log(arr.slice(1, 4)); //it will take all the element from index 1 till index 3 and will not include index 4...
+  //negative index starts from the last element ..
+  console.log(arr.slice(-1)); //it will take only the last index element..
+  console.log(arr.slice(1, -1)); //it will take index from the index 1 till index -2 and will not include the last index..
+  console.log(arr.slice(-3, -1)); //it will take the element from the last thrd element and will not include the last index element
+  console.log(arr.slice()); //it will copy the same array.
+
+  //2--> splice()
+  //splice() is used to remove the element from the original array .
+
+  console.log(arr.splice()); //it dont copy the original array..
+  //splice(index) extracts the element  from the index to the last and form a new array and the extracted part are deleted from the array..
+  console.log(arr.splice(4));
+  console.log(arr);
+
+  //splice(sIndex, lIndex) extracts the element from the starting index till  the last index and the xtracted element are then deleted from the original array...
+  console.log(arr.splice(1, 2));
+  console.log(arr);
+
+  let arr1 = ["a", "b", "c", "d", "e", "f"];
+  //3-->reverse()
+  // it changes the original array by reversing the elements
+  console.log(arr1.reverse());
+  console.log(arr1);
+
+  //4--> join()
+  //it joins the array elements using the separator and converts the array to the string..
+  console.log(arr1.join("-"));
+  console.log(typeof arr1.join("-"));
+
+  /*-------------------------------------------------------*/
+  console.log("-------------ForEachLoop---------------");
+
+  let arr2 = [1, 2, 3, 4, 7, 8, 9];
+  //it a higher order function so it go on call back itself...
+  arr2.forEach(function (element) {
+    console.log(element);
+  });
+  //NOTE----> break and continue keyword don't work in foreach() loop.. so when ever we have to use the break/continue we must go for the forOF loop ..
+  /*in foreach()--> first parameter denotes the element of the array..
+ -->second parameter denotes the index of the array...
+ --> third parameter denotes the complete array
+*/
+  arr2.forEach((ele, index, arr) => {
+    console.log(`at index ${index} is ${ele}`);
+  });
+
+  /*----------forEach in Map/Set----------------------*/
+  console.log("-------------ForEachLoop in Map/Set---------------");
+  let map=new Map([['name','ujjwal'],['age',20],['gender','male']]);
+  map.forEach((value,key,map)=>{
+    console.log(`${key} : ${value}`);
+  });
+//as in set key is not there so we can skip the key part or we can use '_' instead of key....
+  let set=new Set([1,3,4,3,5]);
+  set.forEach(function(value,key,set){
+    console.log(value);
+  });
+</script>
