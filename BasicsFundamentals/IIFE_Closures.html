@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>IIFE and Closures Fundamentals</p>
+</body>
+</html>
+<script>
+    // IIFE - Immediately Invoked Function Expression
+    (function(){
+        console.log('This will never run again');
+    })();
+
+    //--> Arrow function
+    (()=>{
+        console.log('This will also never run again');
+    })();
+
+    /*---------------------------Closures----------------------------*/
+
+    let f;
+    const g=function(){
+        const a=23;
+        f=function(){
+            console.log(a*2);
+        };
+    };
+
+    const h=function(){
+        const b=20;
+        f=function(){
+            console.log(b*2);
+        };
+    };
+
+    g();
+    f();
+    
+    h();
+    f();
+
+</script>
