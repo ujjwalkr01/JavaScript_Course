@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>More important methods in array</p>
+</body>
+</html>
+<script>
+    /*------------find()----------------*/
+    //returns the first element  matched in the array
+    let age=[18,10,21,25];
+    const res=age.find(ages=>ages>18);
+    console.log(res);
+
+    const p1={
+          name:'ujjwal',
+          age:25,
+          gender:'male',
+        };
+    const p2={
+        name:'harry',
+          age:28,
+          gender:'male',
+    }    
+    let details=[p1,p2];
+
+    let findPerson=details.find(person=> person.name ==='ujjwal');
+    console.log(findPerson);
+
+    /*--------Some()--------------*/
+    //It checks for all the condition in the array and returns the boolean value
+
+    let arrr=[1,5,2,8,9];
+
+    let even=arrr.some(ele=> ele%2===0);
+    console.log(even);
+
+    /*-------------every()-------------------*/
+//we can also use this type of function to use dry principles
+//every method basically check for all the elements that it passes the condition and return boolean value
+    const checkEven=(ele)=>ele%2===0;
+    console.log(arrr.every(checkEven));
+    console.log(arrr.some(checkEven));
+
+    /*--------------------flat()-------------*/
+    //it creates a new array and flattened the  nested array by concatinating them
+      let arrr1=[1,2,[3,4,[5,6],7,8]];
+      console.log(arrr1.flat()); //by default depth value is 1
+
+      console.log(arrr1.flat(2));
+
+      let arrr2=[1,2,[3,4,[[5,6],7,8]],9];
+      console.log(arrr2.flat(Infinity));
+
+      let result=arrr1.map(ele=>ele*2).flat()
+      console.log(result);
+
+      /*-----------------flatMap()-----------*/
+      let arr3=[1,2,[3,4,[5,6],7,8]];
+      console.log(arr3.flatMap(ele=>[ele,ele*2]));
+
+
+      /*-------------sort()----------------------*/
+      //it mutates/changes the original array
+      console.log('------------sort Method----------------');
+
+      let arr=['ujjwal','harry','ankita','shruti'];
+      console.log(arr.sort()); // only for the string
+
+      let arr1=[10,2,8,4,9,3];
+
+      console.log(arr1.sort())//nothing works..
+
+      //for integer we have to use comparision function 
+      /* and if 
+        return <0 sorts a after b
+        return >0 sorts a before b
+        return ===0 keep the same order      
+      */
+    //sorts in ascending order..
+     arr1.sort((a,b)=>a-b);
+     console.log(arr1);
+
+     //sorts in descending order..
+     let arr2=[10,2,8,4,9,3];
+     arr2.sort((a,b)=>b-a);
+     console.log(arr2);
+
+
+
+</script>
