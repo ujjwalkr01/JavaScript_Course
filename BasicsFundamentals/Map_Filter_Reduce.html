@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Arrays map, filter, reduce method fundamentals</p>
+</body>
+</html>
+<script>
+    //Data transformations
+     //1--->map()
+     const arr=[1,2,3,5,5];
+
+     const res=arr.map(ele=> ele*2);
+     console.log(arr);
+     console.log(res);
+
+     const res1=arr.map(function(ele){
+        return ele*3;
+     })
+     console.log(res1);
+
+     let arr1=['Ujjwal','harry','shubham'];
+     const res2=arr1.map((name, index, arr)=>
+        `${index+1}. ${name}`
+     );
+     console.log(res2);
+
+
+     /*----------------Filter()---------------------------*/
+     const arr3=[40,20,25,58,30,15,10];
+
+     const res3=arr3.filter(ele=> (ele>20));
+     console.log(res3);
+
+     const arr4=['ujjwal','harry','utkarsh'];
+     const res4=arr4.filter(function(name,index){
+        return name.startsWith('u');
+     });
+     console.log(res4);
+
+     /*---------Reduce()-------------------------*/
+
+     const arr5=[10,20,40,50,30,60];
+//if we dont pass the intial value then accumulative value will be the first element and the current will start from the second element....
+     const res5=arr5.reduce(function(acc,curr,index){
+        console.log(`Iteration ${index} is ${acc}`);
+        return acc+curr;
+     })
+     console.log(res5);
+//if we pass the intial value then the accumulator will be intiailized to that value and current will start from the first element...
+     const res6=arr5.reduce((acc,curr,index)=>{
+        console.log(`Iteration ${index} is ${acc}`);
+        return acc+curr;
+     },100);
+     console.log(res6);
+ 
+     console.log('----------find max-----------');
+
+     const max=arr5.reduce((acc,curr)=>{
+      console.log(acc +' '+curr);
+      if(acc>curr){
+         return acc;
+      }else{
+         return curr;
+      }
+     },arr5[0]);
+
+     console.log(max);
+</script>
