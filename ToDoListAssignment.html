@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .complete{
+        text-decoration: line-through solid rgb(0,0,0);
+      }
+    </style>
+  </head>
+  <body>
+    <header>My Todo list</header>
+    <form>
+      <div>
+        <input type="text" class="todo-input" />
+        <button type="submit" class="todo-button">ADD</button>
+      </div>
+    </form>
+
+    <div class="todo-container">
+      <ul class="todo-list"></ul>
+    </div>
+  </body>
+</html>
+<script>
+  let userInput = document.querySelector(".todo-input");
+  let btnSubmit = document.querySelector(".todo-button");
+  let ul = document.querySelector(".todo-list");
+  
+
+  btnSubmit.addEventListener("click", function (e) {
+    e.preventDefault();
+    let innerDiv = document.createElement('div');
+    ul.append(innerDiv);
+
+    //creating the div elements
+    let list=document.createElement('li');
+    list.setAttribute('class','todo-item');
+    list.textContent=userInput.value;
+    innerDiv.append(list);
+
+    //console.log(list.textContent)
+    let complbtn=document.createElement('button');
+    complbtn.setAttribute('class','complete-btn');
+    complbtn.textContent='Completed';
+    innerDiv.append(complbtn);
+
+    let delbtn=document.createElement('button');
+    delbtn.setAttribute('class','trash-btn');
+    delbtn.textContent='Delete';
+    innerDiv.append(delbtn);
+   
+    //update the input 
+    userInput.value='';
+    
+    complbtn.addEventListener('click',function(){
+      list.classList.toggle('complete');
+    });    
+ 
+    let del=document.querySelectorAll('.trash-btn');
+    del.forEach(el=>{
+      el.addEventListener('click',function(e){
+        el.parentNode.remove();
+      });
+    })
+  });
+
+
+</script>
