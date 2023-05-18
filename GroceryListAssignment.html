@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Grocery List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th>Title</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Item-1</td>
+          <td data-ns-test="price">100</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Item-2</td>
+          <td data-ns-test="price">200</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Item-3</td>
+          <td data-ns-test="price">2</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Item-4</td>
+          <td data-ns-test="price">1</td>
+        </tr>
+      </tbody>
+    </table>
+    <button onClick="calcTotal()">Total</button>
+  </body>
+</html>
+<script>
+  let tbody = document.querySelector("tbody");
+
+  let noOfclick = 0;
+
+  function calcTotal() {
+    if (noOfclick > 0) {
+      const lastChild = tbody.lastChild;
+      tbody.removeChild(lastChild);
+    }
+
+    let price = document.querySelectorAll("[data-ns-test=price]");
+
+    let totalsum = 0;
+    price.forEach((element) => (totalsum += parseInt(element.textContent)));
+
+    //creating the element
+    let trow = document.createElement("tr");
+    let tone = document.createElement("td");
+    let ttwo = document.createElement("td");
+
+    //inserting the value in table row with data
+    tone.textContent = 'Grand Total';
+    ttwo.textContent = totalsum;
+    ttwo.setAttribute('data-ns-test', 'grandTotal');
+
+    //appending the row and data to the table
+    trow.appendChild(tone);
+    trow.appendChild(ttwo);
+    tbody.appendChild(trow);
+
+    noOfclick++;
+  }
+</script>
