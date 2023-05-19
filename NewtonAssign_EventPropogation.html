@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        padding: 50px;
+        background-color: rgba(49, 35, 197, 0.2);
+        text-align: left;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="myAnchor" href="https://www.newtonschool.co/">Go to Website</a>
+    <br />
+    <p>Click the DIV</p>
+    <div id="div2" onclick="func2()">
+      DIV 2
+      <div id="div1" onclick="func1(event)">DIV 1</div>
+    </div>
+    Stop propagation:
+    <input type="checkbox" id="check" />
+  </body>
+</html>
+<script>
+  let aTag = document.getElementById("myAnchor");
+  let ischecked = document.getElementById("check");
+
+  aTag.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+
+  function func1(event) {
+    console.log("DIV 1 is clicked.");
+    if (ischecked.checked) {
+      event.stopPropagation();
+    }
+  };
+
+  function func2() {
+    console.log("DIV 2 is clicked.");
+  }
+</script>
