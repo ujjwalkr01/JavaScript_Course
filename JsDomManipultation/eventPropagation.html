@@ -45,11 +45,11 @@
 
 		div1.addEventListener("click", function (event) {
 			alert("Component 1 event clicked");
-		});
+		}); // by defualt we dont pass any value then its flase and is in bubbling phase
 
 		div2.addEventListener("click", function (event) {
 			alert("Component 2 event clicked");
-		});
+		},true); //capturing phase
 
 		div3.addEventListener("click", function (event) {
 			alert("Component 3 event clicked");
