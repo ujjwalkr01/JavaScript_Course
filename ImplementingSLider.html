@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slide"><img src="img-1.jpg" alt="Photo 1" /></div>
+      <div class="slide"><img src="img-2.jpg" alt="Photo 2" /></div>
+      <div class="slide"><img src="img-3.jpg" alt="Photo 3" /></div>
+      <div class="slide"><img src="img-4.jpg" alt="Photo 4" /></div>
+      <button class="slider__btn slider__btn--left">&larr;</button>
+      <button class="slider__btn slider__btn--right">&rarr;</button>
+      <div class="dots"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let slides = document.querySelectorAll(".slide");
+  let btnleft = document.querySelector(".slider__btn--left");
+  let btnright = document.querySelector(".slider__btn--right");
+  let slider = document.querySelector(".slider");
+  let dotContainer = document.querySelector(".dots");
+
+  // slider.style.transform='scale(0.4) translateX(-800px)';//this will decrement/increment size of the slider.
+  // slider.style.overflow='visible';//this helps to display the overflow images.
+
+  //dots functionality
+
+  const createDots = function () {
+    slides.forEach(function (_, ind) {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class="dots__dot" data-slide="${ind}"></button>`
+      );
+    });
+  };
+
+  createDots();
+
+const activateDots=function(slide){
+  document.querySelectorAll('.dots__dot').forEach(dot=>dot.classList.remove('dots__dot--active'));
+  document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
+}
+
+
+  const gotoSlide = function (slide) {
+    slides.forEach(
+      (sl, i) => (sl.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+    //0% 100% 200% 300%
+  };
+  gotoSlide(0);
+
+  let currSlide = 0;
+  let maxSlide = slides.length;
+  //nextSLide functionality
+  let nextSlide = function () {
+    if (currSlide == maxSlide - 1) {
+      currSlide = 0;
+    } else {
+      currSlide++;
+    }
+
+    //console.log(currSlide);
+    gotoSlide(currSlide);
+    activateDots(currSlide);
+  };
+  //prevSlide funtionality
+  let prevSlide = function () {
+    if (currSlide === 0) {
+      currSlide = maxSlide - 1;
+    } else {
+      currSlide--;
+    }
+    gotoSlide(currSlide);
+    activateDots(currSlide);
+  };
+  btnright.addEventListener("click", nextSlide);
+  btnleft.addEventListener("click", prevSlide);
+
+  document.addEventListener("keydown", function (e) {
+    //console.log(e);
+    if (e.key === "ArrowRight") {
+      nextSlide();
+    }
+    e.key === "ArrowLeft" && prevSlide();
+  });
+
+  dotContainer.addEventListener('click',function(e){
+    if(e.target.classList.contains('dots__dot')){
+       let slide=e.target.getAttribute('data-slide');
+      //we can also access the slide using
+      // let{slide}=e.target.dataset;
+      // console.log(slide)
+      gotoSlide(slide);
+      activateDots(slide);
+    }
+  })
+</script>
