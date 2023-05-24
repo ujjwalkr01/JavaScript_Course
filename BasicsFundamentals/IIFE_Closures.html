@@ -46,11 +46,26 @@
       console.log(res());
 
       const finalres=res();
-      console.log(finalres);
+      //console.log(finalres);
      finalres();
      //so closure(parent)---> c=300 as child function is using that outer scope variable
      //closure(grandparent)---> a=100 and b=200 as child function is using outer scope grandpar variable
-     /*hence wherever this child function will be called it although the grandparent and parent 
-     function are poped out of stack but then also child function will carry outerscope variables and can be accessible everywhere*/
+     /*hence wherever this child function will be called it although the grandparent and parent function are poped out of stack but then also child function will carry outerscope variables and can be accessible everywhere*/
 
+
+     //Assignment of closure in Newton...
+    let generatefunction=function(){
+        let count=0;
+        function func(){
+           count++;
+           return "Total orders = " + count;
+        }
+        
+        return func;
+    }
+//   let starting=1;
+    let initC=generatefunction();
+    console.log(initC());
+    console.log(initC());
+    console.log(initC());
 </script>
