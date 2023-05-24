@@ -23,25 +23,34 @@
 
     /*---------------------------Closures----------------------------*/
 
-    let f;
-    const g=function(){
-        const a=23;
-        f=function(){
-            console.log(a*2);
-        };
-    };
+     /*closure is combination of the funciton bundled togther with reference to its lexical scoping(i.e when a child function access the parent function variable then that variable is in closure).
+      */
 
-    const h=function(){
-        const b=20;
-        f=function(){
-            console.log(b*2);
-        };
-    };
+      function grandParent(){
+        let a=100;
+        let b=200;
+        function parent(){
+            let c=300;
+            function child(){
+                let d=400;
+                console.log(a,b,c,d);
+            }
+            return child;
+        }
+        return parent;
+      }
 
-    g();
-    f();
-    
-    h();
-    f();
+      const res=grandParent(); //whole parent function will returned
+      console.log(res);
+      res();
+      console.log(res());
+
+      const finalres=res();
+      console.log(finalres);
+     finalres();
+     //so closure(parent)---> c=300 as child function is using that outer scope variable
+     //closure(grandparent)---> a=100 and b=200 as child function is using outer scope grandpar variable
+     /*hence wherever this child function will be called it although the grandparent and parent 
+     function are poped out of stack but then also child function will carry outerscope variables and can be accessible everywhere*/
 
 </script>
