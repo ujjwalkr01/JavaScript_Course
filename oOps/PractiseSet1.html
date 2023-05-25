@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Coding Challenge1</h1>
+</body>
+</html>
+<script>
+    const Car=function(make,speed){
+        console.log(this);
+        this.make=make;
+        this.speed=speed;
+
+    }
+
+    let car1=new Car('BMW',120);
+    let car2=new Car('Mercedes',200);
+
+    Car.prototype.accelerate=function(){
+        this.speed+=10;
+        console.log(`${this.make} is going at ${this.speed}`);
+    }
+
+    Car.prototype.brake=function(){
+        this.speed-=5;
+        console.log(`${this.make} is going at ${this.speed}`);
+    }
+
+    car2.accelerate();
+    car2.accelerate();
+    car2.accelerate();
+    car2.brake();
+    car2.accelerate();
+
+    car1.accelerate();
+    car1.accelerate();
+    car1.accelerate();
+    car1.brake();
+    
+</script>

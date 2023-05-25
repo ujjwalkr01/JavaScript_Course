@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Classes and OBject</h1>
+</body>
+</html>
+<script>
+//A class can be declared using two ways 1-->class Expression 2--> class Declaration
+
+//1--> class Expression
+
+  let Person1=class A{
+    constructor(name, age){
+        this.name=name;
+        this.age=age;
+    };
+    
+    currentAge(){
+       // console.log(2023-this.age);
+        return 2023-this.age;
+    }
+  };
+
+  let personA=new Person1('harry',1999); 
+  
+  console.log(personA.name);
+  console.log(personA.currentAge());
+
+
+
+
+//2--->class Declaration
+    class Person{
+        constructor(name,birthYear){
+            this.name=name;
+            this.birthYear=birthYear;
+        }
+
+         calAge(){
+            console.log(2023-this.birthYear);
+         }
+
+         greet(){
+            console.log(`Hi ${this.name}`);
+         }
+
+    }
+
+    const A=new Person('Ujjwal',1998);
+    console.log(A);
+    A.calAge();
+    A.greet();
+
+    console.log(A.__proto__===Person.prototype);
+
+    //we can also add the property in class using this way
+    Person.prototype.nationality="Indian";
+    console.log(A.nationality);
+</script>

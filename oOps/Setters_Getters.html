@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Setters and Getters in OOps</h1>
+  </body>
+</html>
+<script>
+    //1-->example
+  class A {
+    name = "ujjwal";
+    set lastName(title) {
+      this.name = `${this.name} ${title}`;
+    }
+    get lastName() {
+      return this.name;
+    }
+    get age() {
+      return 2023 - 1998;
+    }
+  }
+
+  let person = new A();
+  person.lastName = "Singh"; //setting the lastName
+  console.log(person.lastName); //getting the name
+  console.log(person.age);
+
+  A.hey=function(){
+     console.log('Hey there');
+     /*whatever object is calling the function this will be pointing to that object*/
+     console.log(this); 
+  }
+  A.hey();
+ // person.hey();----> //this will give an error as it's not inherited by the parent class
+/*----------------------------------------------------------------------------*/
+  //2-->Example
+  class Person {
+
+    static nationality='Indian';
+    constructor(fullname, birthYear) {
+      this.fullname = fullname;
+      this.birthYear = birthYear;
+    }
+    calAge() {
+      console.log(2023 - this.birthYear);
+    }
+
+    greet() {
+      console.log(`Hi ${this.fullname}`);
+    }
+
+    get age() {
+      return 2023 - this.birthYear;
+    }
+
+    //setting the properties of the given value...
+    set fullname(name) {
+      //console.log(name);
+      if (name.includes(" ")) {
+        this._fullname = name;
+      } else {
+       // alert(`${name} is not a full name`);
+      }
+    }
+    get fullname() {
+      return this._fullname;
+    }
+
+     static hey(){
+     console.log('Hey there');
+     /*whatever object is calling the function this will be pointing to that object*/
+     console.log(this); //this will point to the current object
+  }
+  }
+
+  let personA = new Person("Ujjwal Kumar", 1998);
+  personA.greet();
+
+  let personB=new Person('harry',2000);
+  personB.greet();
+  console.log(personB.age); //getting the age
+
+ 
+ Person.hey();
+ console.log(Person.nationality);
+ Person.nationality='American';
+ console.log(Person.nationality);
+
+ /*Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself*/
+    console.log(personA.nationality);
+//  personA.hey();
+</script>
