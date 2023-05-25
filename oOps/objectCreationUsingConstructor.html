@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Object creation using constructor and new keyword</p>
+  </body>
+</html>
+<script>
+  const Person = function (firstName, lastName, birthYear) {
+    console.log(this);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthYear = birthYear;
+    //we can create the function inside the constructor but we should avoid using it because as many time we call a constructor fucntion will get created..
+    // this.calAge=function(){
+    //     console.log(2023-this.birthYear);
+    // }
+  };
+  let name = new Person("ujjwal", "kumar", 1999);
+  console.log(name);
+
+  name1 = new Person("harry", "kumar", 2000);
+  console.log(name1);
+  //return the boolean value if the given object is instance Of the Person
+  console.log(name instanceof Person);
+
+  /*----------prototype-------------------*/
+  console.log("-----------Prototype----------");
+  //using prototype we can add properties to a constructor and that properties are accessible to the object created using the constructor
+
+  //adding the  property to the constructor
+  Person.prototype.nationality = "Indian";
+  console.log(name.nationality);
+  //adding method to the constructor
+  Person.prototype.calAge = function () {
+    console.log(2023 - this.birthYear);
+  };
+
+  console.log(Person);
+  name.calAge();
+  name1.calAge();
+
+  //this is the prototype of a name that is exactly the prototype of a peron
+  console.log(name.__proto__);
+  // console.log(Person.__proto__);
+
+  console.log(Person.prototype);
+  console.log(Object.prototype)
+  console.log(name.__proto__ === Person.prototype);
+
+  console.log(name);
+
+  //to check whether the property is of the specific object or not 
+  //there is method -->objName.hasOwnProperty('propertyName')-->return boolean value
+  console.log(name.hasOwnProperty('firstName'));
+  console.log(name.hasOwnProperty('nationality'));
+  console.log(name.hasOwnProperty('calAge'));
+  console.log(Person.hasOwnProperty('nationality'));
+
+  //this will point to the Object prototype (i.e top of the prototype chain)
+  console.log(name.__proto__.__proto__);
+  console.log(name.__proto__.__proto__.__proto__); //returns null as object prototype is not pointing to anyone.
+
+  //.constructor will point to the Person constructor
+  console.log(Person.prototype.constructor);
+
+  let arr=[3,6,6,5,9];
+  console.log(arr);
+  console.log(arr.__proto__===Array.prototype);
+  
+
+</script>
