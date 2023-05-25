@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Inheritanc between Classes :constructorFunction</h1>
+</body>
+</html>
+<script>
+    const Person=function(firstName,birthyear){
+        console.log(this);
+        this.firstName=firstName;
+        this.birthyear=birthyear;
+    }
+
+    Person.prototype.calAge=function(){
+        console.log(2023-this.birthyear);
+    }
+
+
+    const Student=function(firstName,birthyear,course){
+        // this.firstName=firstName;
+        // this.birthyear=birthyear;
+        Person.call(this, firstName,birthyear);//call method points this keyword to current object/function it belongs to.
+        this.course=course;
+    }
+//we are linking the prototype of person to student
+Student.prototype=Object.create(Person.prototype);
+console.log(Student);
+   
+    Student.prototype.introduce=function(){
+        console.log(`My name is ${this.firstName} and I study ${this.course}.`);
+    }
+
+    const student1=new Student('Ujjwal',1998,'Computer science');
+    student1.introduce();
+    student1.calAge();
+
+    console.log(student1 instanceof Student);
+    console.log(student1 instanceof Person);
+     console.log(student1.__proto__);//also refering to the person as we are inheriting student from person
+     console.log(student1.__proto__.__proto__); //refering to the Person
+     console.log(student1.__proto__.__proto__.__proto__); //refering to the object
+     console.log(student1.__proto__.__proto__.__proto__.__proto__); //refering to the null
+</script>
