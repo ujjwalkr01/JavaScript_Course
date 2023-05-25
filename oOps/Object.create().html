@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object.create()</h1>
+</body>
+</html>
+<script>
+   const A={
+    calAge(){
+        console.log(this)
+        console.log(2023-this.birthyear);
+    },
+    init(firstName,birthyear){
+      this.firstName=firstName;
+      this.birthyear=birthyear;
+    },
+   }
+   const person=Object.create(A); //a new object is created with the help of obj A..
+   //console.log(person);
+   person.name='ujjwal';
+   person.birthyear=1999;
+   person.calAge();
+  // console.log(person);
+
+   const person1=Object.create(A);
+   console.log(person1);
+   person1.init('harry',1998);
+   person1.calAge();
+</script>
