@@ -25,11 +25,18 @@
 
             console.log(`Thanks, ${this.owner} for opening an account.`);
         }
+
+        getMovements(){
+            return this.#movements;
+            
+        }
         deposit(val){
-            this.movements.push(val);
+            this.#movements.push(val);
+            return this;//for using in method chaining 
         }
         withdraw(val){
             this.deposit(-val);
+            return this;//for using in method chaining
         }
 
         approveLoan(val){
@@ -41,11 +48,12 @@
             
         }
         //private methods..
-        #requestLoan(val){
+        requestLoan(val){
             if(this.approveLoan(val)){
                 this.deposit(val);
                 console.log("Loan approved and money has been deposited in your bank acc.")
             }
+            return this;
         }
     }
 
@@ -56,4 +64,8 @@
     //  console.log(acc1.#pin);
     //-->private methods are also not accessible outside the class
     //console.log(acc1.#requestLoan())
+
+    //we can do the method chaning as well
+    acc1.deposit(500).withdraw(200).deposit(1000).withdraw(800).requestLoan(4000);
+    console.log(acc1.getMovements());
 </script>
