@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Employee Constructor Assignment</h1>
+  </body>
+</html>
+<script>
+  const Employee = function (name, yearOfJoin, location) {
+    this.name = name;
+    this.yearOfJoin = yearOfJoin;
+    this.location = location;
+    let salary;
+/*can also use this type but it's better to use .prototype*/
+    //    this.getEmployeeDetails=function(){
+    //     return `Name: ${this.name}, Year of Join: ${this.yearOfJoin}, Location: ${this.location}`;
+    //    }
+
+    //    this.setSalary=function(amount){
+    //      this.salary=amount;
+    //    }
+    //    this.getSalary=function(){
+    //     return this.salary;
+    //    }
+  };
+
+  Employee.prototype.getEmployeeDetails = function () {
+    return `Name: ${this.name}, Year of Join: ${this.yearOfJoin}, Location: ${this.location}`;
+  };
+
+  Employee.prototype.setSalary = function (amount) {
+    this.salary = amount;
+  };
+
+  Employee.prototype.getSalary = this.getSalary = function () {
+    return this.salary;
+  };
+  const emp1 = new Employee("ujjwal", 2022, "Bangalore");
+  console.log(emp1.getEmployeeDetails());
+  emp1.setSalary(5000);
+  console.log(emp1.getSalary());
+
+  const emp2 = new Employee("shubham", 2022, "Bangalore");
+  console.log(emp2.getEmployeeDetails());
+  console.log(emp1.getSalary());
+  //console.log(emp2.getManagerSalary());
+</script>

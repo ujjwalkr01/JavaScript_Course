@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Construct Stopwatch</h1>
+  </body>
+</html>
+<script>
+  function StopWatch(duration) {
+    let startTime = 0;
+  let endTime = 0;
+  let running = false;
+
+  this.start = function() {
+    if (running) {
+      return "Stopwatch is already running";
+    }
+    startTime = Date.now();
+    running = true;
+  };
+
+  this.stop = function() {
+    if (!running) {
+      return "Stopwatch is not started";
+    }
+    endTime = Date.now();
+    running = false;
+  };
+
+  this.reset = function() {
+    startTime = 0;
+    endTime = 0;
+    running = false;
+  };
+
+  Object.defineProperty(this, "duration", {
+    get: function() {
+      return endTime - startTime;
+    }
+  });
+
+//    get: function prop(){
+//     return this.endTime-this.startTime;
+//    }
+  }
+
+  const obj = new StopWatch();
+  obj.start();
+  setTimeout(() => {
+    obj.stop();
+    console.log(obj.duration); // prints 1000
+  }, 1000);
+
+  //Example 2
+const obj2 = new StopWatch();
+obj2.start(); //
+console.log(obj2.start()) //prints "Stopwatch is already running"
+
+//Example 3
+obj2.stop(); //watch gets stopped
+console.log(obj2.stop()) //prints "Stopwatch is not started"
+</script>
