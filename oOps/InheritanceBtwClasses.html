@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Inheritance between classes using Object.Create</h1>
+</body>
+</html>
+<script>
+
+    const Person={
+        calAge(){
+            console.log(2023-this.birthyear);
+        },
+
+        init(fullName,birthyear){
+            this.fullName=fullName;
+            this.birthyear=birthyear;
+        },
+    };
+
+    const Student=Object.create(Person);
+
+    Student.init=function(fullName,birthyear,course){
+        Person.init.call(this, fullName, birthyear);
+        this.course=course;
+    }
+    
+    Student.introduce=function(){
+        console.log(`My name is ${this.fullName} and I Study ${this.course} and I am ${2023-this.birthyear} years old`);
+    }
+
+    const stud1=Object.create(Student);
+    stud1.init('Ujjwal',1998,'computer science');
+    stud1.introduce();
+    stud1.calAge();
+</script>
