@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Car and Bikes Assignment</h1>
+</body>
+</html>
+<script>
+    const vehicle={
+        name:"",
+        type:"",
+        wheelCount:"",
+    }
+  
+    function makeCar(name,wheelCount){
+        const car=Object.create(vehicle);
+        car.name=name;
+        car.type='Car';
+        car.wheelCount=wheelCount;
+        return car;
+    }
+
+    function makeBike(name,wheelCount){
+        const bike=Object.create(vehicle);
+        bike.name=name;
+        bike.type='Bike';
+        bike.wheelCount=wheelCount;
+        return bike;
+    }
+
+    const myCar=makeCar('Nexon',4);
+    //console.log(myCar.__proto__);
+    console.log(`${myCar.type} named ${myCar.name} has ${myCar.wheelCount} wheels`);
+
+    const myBike=makeBike('Pulsar',2);
+    console.log(myBike);
+    console.log(`${myBike.type} named ${myBike.name} has ${myBike.wheelCount} wheels`);
+</script>
