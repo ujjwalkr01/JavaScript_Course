@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Product Constructor</h1>
+  </body>
+</html>
+<script>
+  const Product = function (name, price, manufacturer) {
+    this.name = name;
+    this.price = price;
+    this.manufacturer = manufacturer;
+    //console.log( this.price);
+    this.getProductDetails = function () {
+      return `Name: ${this.name}, Price: ${this.price}, Manufacturer: ${this.manufacturer}`;
+    };
+    this.setTax = function (amount) {
+      tax = amount;
+    };
+    this.getTax = function () {
+      return tax;
+    };
+    calculateTotalPrice = function () {
+      return price + price * (tax / 100);
+    };
+    this.getTotalPrice = function () {
+      return calculateTotalPrice();
+    };
+
+    this.deleteMethod = function (methodName) {
+      delete this[methodName];
+    };
+  };
+
+  const p1 = new Product("Bulb", 1000, "Philips");
+  p1.setTax(5);
+  console.log(p1.getProductDetails());
+  console.log(p1.getTax());
+  console.log(p1.tax);
+  console.log(p1.getTotalPrice());
+  console.log(p1.calculateTotalPrice);
+  p1.deleteMethod("getProductDetails");
+  console.log(p1.getProductDetails);
+</script>
