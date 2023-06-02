@@ -11,20 +11,25 @@
 </body>
 </html>
 <script>
-    console.log('Test start')
+    //Event loop first global context will execute 
+    //then if the call stack is empty that is if the gec has been executed successfully then asynchronus function will get execute...
+    //then promises will get priority  of execution
+    //then call back queue will get executed
+
+    console.log('Test start')//1--execute frst
     setTimeout(()=>{
-      console.log('0 sec timer');
+      console.log('0 sec timer');//execute last
     },0)
     
-    Promise.resolve('Resolved promise 1').then(response=>console.log(response));
+    Promise.resolve('Resolved promise 1').then(response=>console.log(response)); //execute second
 
     Promise.resolve('Resolved promise 2').then(response=>{
         for(let i=0;i<1000;i++){
-            console.log(response);
+            console.log(response); //execute thrd
         }        
     });
 
-    console.log('Test Ended');
+    console.log('Test Ended');//execute first
 
     
 </script>
