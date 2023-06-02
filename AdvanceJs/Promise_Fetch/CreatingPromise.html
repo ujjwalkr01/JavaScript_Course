@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Creating Promises</h1>
+  </body>
+</html>
+<script>
+  let lotteryPromise = new Promise(function (resolve, reject) {
+    console.log('Lottery draw is happening...');
+    setTimeout(function () {
+      if (Math.random() >= 0.5) {
+        resolve("You win");
+      } else {
+        reject(new Error("You lost your money!"));
+      }
+    },2000);
+  });
+
+  lotteryPromise
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+
+
+    /*---------------promising SettimeOut-------------------*/
+
+    const wait = function(second){
+        return new Promise(function(resolve){
+            setTimeout(resolve, second*1000);
+        });
+    };
+
+    wait(1).then(()=> {
+        console.log('1 sec passed');
+        return wait(2);
+    }).then(()=>{
+        console.log('2 sec passed');
+        return wait(3);
+    }).then(()=>{
+        console.log('3 sec passed');
+        return wait(4);
+    }).then(()=>{
+        console.log('4 sec passed');
+    });
+
+//this .resolve and .reject method will run before all the promise as it's invoked immidiately and get executed immidiately
+    Promise.resolve('abc').then(x=>console.log(x));
+    Promise.reject(new Error('I am error')).catch(err=>console.error(err));
+</script>
