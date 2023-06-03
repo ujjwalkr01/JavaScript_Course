@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dates Fundamentals</h1>
+</body>
+</html>
+<script>
+    const currDate=new Date();
+    console.log(currDate); //This gives current date
+
+   console.log(new Date('')); //If we pass the empty string in the date constructor then it will give the invalid date
+
+   console.log(new Date('1998'))// if we pass only year it will give the 1st month of the year with 1st date
+
+   console.log(new Date('1998','10'))//in the date method the months are 0 based(i.e- 0--> jan & 11--> Dec) so we have to pass the month value on the basis of 0
+
+   /*in this frst parameter--> is year
+   second parameter--> is the month
+   third parameter--> is the day
+   fourth parameter--> is the hour
+   fifth parameter--> is the minute
+   sixth parameter--> is the seconds 
+   seventh parameter--> is the milisecond (1000ms-->1sec)
+   */
+   console.log(new Date('1998','8','12', '5','12','0','1000'));
+
+   const future=new Date('1998','8','12', '5','12','0','1000');
+   console.log(future.getFullYear());
+   console.log(future.getMonth());
+   console.log(future.getDate());
+   console.log(future.getDay());
+   console.log(future.getHours());
+   console.log(future.getMinutes());
+   console.log(future.getSeconds());
+   console.log(future.getMilliseconds());
+   console.log(future.toISOString());
+   console.log(future.getTime());
+
+   console.log(Date.now());
+   console.log(new Date(905557321000));//this will give the new date on the basis of the miliseconds..
+   console.log(new Date(0)); //it will give the frst date of the first month of the 1970
+
+   console.log(new Date('1998','10','33')) // it will automatic fix the date by adding the 3 days to next month.. (Nov is of 30 and 3 will be added to the next month that is 3 dec)
+
+
+</script>
