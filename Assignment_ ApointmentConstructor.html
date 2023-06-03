@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Appointment constructor</h1>
+  </body>
+</html>
+<script>
+  function Appointment(aptDate) {
+    // console.log(aptDate);
+    this.date = new Date(aptDate);
+    // console.log(this.date);
+    // console.log(this.date.toDateString());
+    this.location = "";
+
+    this.setLocation = function (newlocation) {
+      this.location = newlocation;
+    };
+    this.getLocation = function () {
+      return this.location;
+    };
+    this.toString = function () {
+      return `Appointment on ${this.date.toDateString()} at ${this.location}`;
+    };
+  }
+
+//   let aptDate1 = "2022-12-25";
+  const appointment1 = new Appointment('2022-12-25');
+  appointment1.setLocation('Doctor Lal Pathlabs');
+
+  console.log(appointment1.getLocation());
+  console.log(appointment1.toString());
+</script>
