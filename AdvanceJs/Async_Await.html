@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Async/Await function</h1>
+  </body>
+</html>
+<script>
+  const wait = function (second) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, second * 1000);
+    });
+  };
+  /*Async function returns promise and await method inside it is use to wait the async block till the data is fetched completely...
+   */
+  const res = async function () {
+    try {
+      const waitmethod = await wait(2);
+      /*line num24 is same as fetch('http..some url').then(response=>response.json)
+      line 25 is same as .then(data=>data) (i.e is getting data from the text json format)
+      */
+      const res = await fetch(`https://restcountries.com/v3.1/name/India`);
+      // console.log(res);
+      const data = await res.json();
+      console.log(data);
+
+      return data[0].borders[0];
+    } catch (err) {
+      console.error(err);
+      throw err;
+    } finally {
+      console.log("done");
+    }
+  };
+
+  // const returnedValue=res();// here at intitial stage js will not know what the is the value of the promise so...no matters what if there is error or not async fucntion will always returns the fulfilled promise value
+  // console.log(returnedValue);
+
+//   res()
+//     .then((data) => console.log(data))
+//     .catch((err) => console.error(err))
+//     .finally(() => console.log("completed"));
+  console.log("First run");
+
+  (async function(){
+    try{
+        const country=await res();
+        console.log(country);
+    }catch(err){
+        console.log(err);
+    }finally{
+        console.log('task completed');
+    }
+  })();
+</script>
