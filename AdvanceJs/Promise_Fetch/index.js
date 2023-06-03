@@ -72,7 +72,7 @@ const renderError = function (msg) {
 const getJSON = function (url, ErrorMsg = "Something went wrong") {
   // console.log(url);
   return fetch(url).then((response) => {
-    if (!response.ok) {
+    if (!response.ok) {//the response property have the ok porperty which have the boolean value.
       throw new Error(`${ErrorMsg} ${response.status}`);
     }
     //console.log(response)
