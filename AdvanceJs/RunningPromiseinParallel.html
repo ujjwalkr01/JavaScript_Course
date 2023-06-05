@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Running promise in parallel</h1>
+  </body>
+</html>
+<script>
+  const getJSON = function (url, ErrorMsg = "Something went wrong") {
+    // console.log(url);
+    return fetch(url).then((response) => {
+      if (!response.ok) {
+        //the response property have the ok porperty which have the boolean value.
+        throw new Error(`${ErrorMsg} ${response.status}`);
+      }
+      //console.log(response)
+      return response.json();
+    });
+  };
+
+  const getCountries = async function (c1, c2, c3) {
+    try {
+      // const [data]=await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+
+      // const [data1]=await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+
+      // const [data2]=await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+
+      // console.log(data.capital,data1.capital,data2.capital)
+
+      /*---Running promise in parallel-----*/
+      //--> if there is same data we have to fetch then we can use promise.all() and fetch data in parallel.
+      //-->if any of promise get rejected all of them will get rejected.
+      const data = await Promise.all([
+        getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+        getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+        getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+      ]);
+      console.log(data.map((ele) => ele[0].capital));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getCountries("India", "Usa", "Canada");
+
+  /*--------Promise.race()---------*/
+  //the data which will get fullfilled earlier will get returned and it will return single value
+  const getCountry = async function (c1, c2, c3) {
+    try {
+      const data = await Promise.race([
+        getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+        getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+        getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+      ]);
+      console.log(data.map((data) => data));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getCountry("Egypt", "Ukraine", "Portugal");
+
+  /*--------Promise.allSettled()----------*/
+  //it will return all the promise no matters it is fulfilled or rejection
+  Promise.allSettled([
+    Promise.resolve("Success"),
+    Promise.reject("Error"),
+    Promise.resolve("Success"),
+  ])
+    .then((res) => console.log(res));
+
+    Promise.all([
+    Promise.resolve("Success"),
+    Promise.reject("Error"),
+    Promise.resolve("Success"),
+  ])
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+
+
+    /*------Promise.any()-----------*/
+//it returns the first fullfilled promise and ignore the rejected promise.
+//it only rejects the promise when all are rejected promise 
+    Promise.any([
+    Promise.resolve("Success"),
+    Promise.reject("Error"),
+    Promise.resolve("Success"),
+  ])
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+
+</script>
