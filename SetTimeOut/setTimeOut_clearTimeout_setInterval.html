@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>setTimeout(), clearTimeout(), setInterval()</h1>
+  
+</body>
+</html>
+<script>
+    /*----------setTimeout()------------*/
+
+    setTimeout(()=>console.log(`Here is your Pizza!`),2000);
+    console.log('Waiting....');
+//we can also pass the parameter of the function in the setTimeout() as the las parameter...
+    const ingredients=['olives','spinach'];
+    const pizzaTimer=setTimeout((ing1,ing2)=>console.log(`Here is your Pizza with ${ing1} and ${ing2}`),3000,...ingredients);
+    
+    console.log('Order Completed');
+
+    /*----------clearTimeout()----------*/
+//it is used to stop the setTimeout() if the conditon satifies.    
+    if(ingredients.includes('spinach')){
+        clearTimeout(pizzaTimer);
+    }
+
+/*------------setInterval()--------*/
+//this will basically run continously as per given time frame
+setInterval(()=>{
+    console.log(`Order no. 121 pls collect your order`);
+},3000);
+
+const clock=setInterval(()=>{
+    const now=new Date();
+    console.log(now);
+},1000);
+
+//if we want to stop the setInterval() then we use clearInterval(value).....
+clearInterval(clock);
+</script>
