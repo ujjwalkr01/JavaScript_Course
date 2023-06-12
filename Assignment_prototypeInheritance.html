@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>prototype Inheritance Assignment</h1>
+</body>
+</html>
+<script>
+
+let sayMixin = {
+ // write your code here
+ fname:'ujjwal',
+ say1(name){
+    console.log(name);
+ }
+};
+
+let sayHiMixin = {
+ // write your code here
+ lastname:'kumar',
+ say(){
+   console.log('hi',this.name);
+   return sayMixin.say1.call(this,name);
+ }
+};
+
+sayHiMixin.__proto__=sayMixin;
+console.log(sayHiMixin.fname);
+console.log(sayHiMixin);
+sayHiMixin.say1('ujj')
+
+function User(name){
+   this.name=name;
+  //  console.log(this.name);
+}
+Object.setPrototypeOf(User.prototype, sayHiMixin);
+console.log(User)
+
+    const obj=new User('Newton School');
+    // console.log(obj.lastname);
+    // console.log(obj.fname);
+     console.log(obj.say());
+     
+</script>
