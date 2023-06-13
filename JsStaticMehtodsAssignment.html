@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>js Static methods</h1>
+</body>
+</html>
+<script>
+    class Account {
+    /*
+      Write the remaining part of the class
+    */
+   static totalaccount=0;
+   static totalbalance=0;
+   constructor(accountNum, balance) {
+      this.accountNum=accountNum;
+      this.balance=balance;
+      Account.totalaccount+=1;
+      Account.totalbalance+=balance;
+    }
+    static returnTotalAccounts(){
+        //console.log(this.accountNum);
+        return Account.totalaccount;
+    }
+    static returnTotalBalance(){
+        return Account.totalbalance;
+    }
+}
+
+let user1 = new Account("newton1102", 1000)
+let user2 = new Account("newton2231", 2000)
+let user3 = new Account("newton1212", 500)
+
+let totalAccounts = Account.returnTotalAccounts()
+let totalBal = Account.returnTotalBalance()
+
+console.log(totalAccounts)
+console.log(totalBal)
+</script>
