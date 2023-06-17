@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Js prototype Inheritance</h1>
+</body>
+</html>
+<script>
+const addAndSubtract = {
+  num1: 6,
+  num2: 3,
+  add() {
+    return (this.num1 + this.num2);
+  },
+  subtract() {
+    return (this.num1 - this.num2);
+  },
+}
+// write code here
+// return the output, do not use console.log
+const calculator=Object.create(addAndSubtract);
+
+calculator.product=function(){
+    return (this.num1*this.num2);
+  };
+
+calculator.divide=function(){
+    return (this.num1/this.num2);
+  };
+
+console.log(calculator.num1); // 6
+console.log(calculator.subtract()); // 3
+console.log(calculator.product()); // 18
+</script>
