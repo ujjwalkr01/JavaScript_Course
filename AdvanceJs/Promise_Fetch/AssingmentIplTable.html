@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        th{
+            background-color: #00008b;
+            color: #ffffff;
+        }
+        td:first-child{
+          background-color: #f2f2f2;
+        }
+        td:last-child{
+            background-color: #d1d1d1;
+        }
+        td{
+            border: 1px solid #dddddd;
+        }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">IPL Season 2022 Points</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Team</th>
+          <th>Matches</th>
+          <th>Won</th>
+          <th>Lost</th>
+          <th>Tied</th>
+          <th>NRR</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr> -->
+      </tbody>
+    </table>
+  </body>
+</html>
+<script>
+  let tbody = document.querySelector("tbody");
+  let arr = [];
+
+  const Tablepoints = async function () {
+    try {
+      const res = await fetch(
+        "https://my-json-server.typicode.com/FreSauce/json-ipl/data"
+      );
+      const data = await res.json();
+
+      data.forEach((ele) => {
+        arr.push(ele.NRR);
+      });
+
+      arr.sort((a, b) => a - b);
+      console.log(arr);
+
+      arr.forEach((el) => {
+        data.filter((ele) => {
+          if (ele.NRR === el) {
+            // console.log(ele);
+            const markup = `
+                   <tr>
+                     <td>${ele.No}</td>
+                     <td>${ele.Team}</td>
+                     <td>${ele.Matches}</td>
+                     <td>${ele.Won}</td>
+                     <td>${ele.Lost}</td>
+                     <td>${ele.Tied}</td>
+                     <td>${ele.NRR}</td>
+                     <td>${ele.Points}</td>
+                   </tr>
+                    `;
+            tbody.insertAdjacentHTML("beforeend", markup);
+          }
+        });
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  Tablepoints();
+</script>
