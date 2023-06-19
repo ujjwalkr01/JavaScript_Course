@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4 id="page_indicator"></h4>
+    <ol id="issue_container"></ol>
+
+    <button id="load_next">Next page</button>
+    <button id="load_prev">Prev page</button>
+  </body>
+</html>
+<script>
+  let heading = document.getElementById("page_indicator");
+  let ol = document.getElementById("issue_container");
+  let nextBtn = document.getElementById("load_next");
+  let prevBtn = document.getElementById("load_prev");
+  //   let div = document.querySelector("div");
+  let pageNumberHere = 1;
+
+  async function fetchData(pageNumberHere) {
+    const res = await fetch(
+      `https://api.github.com/repositories/1296269/issues?page=${pageNumberHere}&per_page=5`
+    );
+    const data = await res.json();
+
+    // console.log(data);
+    heading.textContent = `Page Number ${pageNumberHere}`;
+
+    data.forEach((ele) => {
+      const markup = `
+        <li>${ele.title}</li>
+        `;
+      ol.insertAdjacentHTML("beforeend", markup);
+    });
+  }
+  fetchData(pageNumberHere);
+
+  nextBtn.addEventListener("click", function () {
+    ol.innerHTML = "";
+    pageNumberHere += 1;
+    fetchData(pageNumberHere);
+  });
+  prevBtn.addEventListener("click", function () {
+    pageNumberHere -= 1;
+    if (pageNumberHere > 0) {
+      ol.innerHTML = "";
+      fetchData(pageNumberHere);
+    }
+    if (pageNumberHere === 0) {
+      pageNumberHere = 1;
+    }
+  });
+</script>
