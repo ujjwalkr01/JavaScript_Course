@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="userDetail"></div>
+    <button data-attr="age">Age</button>
+    <button data-attr="email">Email</button>
+    <button data-attr="phone">Phone</button>
+    <section>
+      <h3>Additional Info</h3>
+    </section>
+    <button id="getUser">Get User</button>
+  </body>
+</html>
+<script>
+  let body = document.querySelector("body");
+  let agebtn = document.querySelector('[data-attr="age"]');
+  let emailbtn = document.querySelector('[data-attr="email"]');
+  let phbtn = document.querySelector('[data-attr="phone"]');
+  let btn = document.getElementById("getUser");
+  let details = document.querySelector("h3");
+  let userDetail = document.getElementById("userDetail");
+
+  function CreatingEle(data, isFlag = false) {
+    const markup = `
+      <img src="${data.results[0].picture["large"]}" alt="profilePic">
+         <h1>${data.results[0].name["first"]} ${data.results[0].name["last"]}</h1>
+      `;
+    userDetail.insertAdjacentHTML("afterbegin", markup);
+  }
+  async function fetchData() {
+    const res = await fetch("https://randomuser.me/api/");
+    const data = await res.json();
+
+    CreatingEle(data);
+    agebtn.addEventListener("click", function () {
+      details.textContent = `Age: ${data.results[0].dob["age"]}`;
+    });
+
+    emailbtn.addEventListener("click", function () {
+      details.textContent = `Email: ${data.results[0].email}`;
+    });
+
+    phbtn.addEventListener("click", function () {
+      details.textContent = `Phone: ${data.results[0].phone}`;
+    });
+  }
+  fetchData();
+
+  btn.addEventListener("click", () => {
+    details.textContent = "Additional Info";
+    userDetail.innerHTML = "";
+    fetchData();
+  });
+</script>
