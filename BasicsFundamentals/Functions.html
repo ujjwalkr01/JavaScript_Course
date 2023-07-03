@@ -12,15 +12,18 @@
 </html>
 <script>
     //function declaration
- //In this we can access the function before intializing the function    
-    const age= calculateAge(1998);
+ //In this we can access the function before intializing the function 
+ 
+    calculateAge(1998);
     function calculateAge(birthyear){
+        console.log('hi i can be intialized before defining')
         return 2023-birthyear;
     }
     
-    console.log(age);
+    console.log(calculateAge(1998));
+    // console.log(age);
 
-    //function expression
+    //function expression-->or Anonymous function
 //so in function expression we can't access the function before intialization 
     const calcAge=function(birthyear){
         return 2023-birthyear;
